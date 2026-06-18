@@ -5,8 +5,8 @@ from turtle import Turtle
 class Ball(Turtle):
     def __init__(self):
         super().__init__()
-        self.initial_speed = [2, 2]
-        self.current_speed = self.initial_speed.copy()
+        self.speed_x = choice([1, 2])
+        self.speed_y = choice([1,2,3])
 
         self.setup()
 
@@ -14,25 +14,27 @@ class Ball(Turtle):
         self.penup()
         self.color("white")
         self.shape("circle")
-        self.current_speed[0] *= choice([1, -1])
-        self.current_speed[1] *= choice([1, -1])
+        self.set_random_speed()
 
     def move(self):
-        new_x = self.xcor() + self.current_speed[0]
-        new_y = self.ycor() + self.current_speed[1]
+        new_x = self.xcor() + self.speed_x
+        new_y = self.ycor() + self.speed_y
 
         self.goto(new_x, new_y)
 
         hit_wall = new_y > 290 or new_y < -290
         if hit_wall:
-            self.current_speed[1] *= -1
+            self.speed_y *= -1
 
     def bounce(self):
-        self.current_speed[0] *= -1.1
-        self.current_speed[1] *= -1
+        self.speed_x *= -1.1
 
     def reset_ball(self):
-        self.current_speed = self.initial_speed
+        self.speed_x = choice([1, 2])
+        self.speed_y = choice([1, 2, 3])
         self.reset()
         self.setup()
-        print(self.current_speed)
+
+    def set_random_speed(self):
+        self.speed_x = choice([1, 2])
+        self.speed_y = choice([1, 2, 3])
