@@ -6,7 +6,7 @@ class Ball(Turtle):
     def __init__(self):
         super().__init__()
         self.initial_speed = [2, 2]
-        self.current_speed = self.initial_speed
+        self.current_speed = self.initial_speed.copy()
 
         self.setup()
 
@@ -30,3 +30,9 @@ class Ball(Turtle):
     def bounce(self):
         self.current_speed[0] *= -1.1
         self.current_speed[1] *= -1
+
+    def reset_ball(self):
+        self.current_speed = self.initial_speed
+        self.reset()
+        self.setup()
+        print(self.current_speed)
