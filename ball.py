@@ -1,12 +1,11 @@
-from enum import Enum
-from random import choice
+import random
 from turtle import Turtle
 
 class Ball(Turtle):
     def __init__(self):
         super().__init__()
-        self.speed_x = choice([1, 2])
-        self.speed_y = choice([1,2,3])
+        self.speed_x = 0
+        self.speed_y = 0
 
         self.setup()
 
@@ -30,11 +29,10 @@ class Ball(Turtle):
         self.speed_x *= -1.1
 
     def reset_ball(self):
-        self.speed_x = choice([1, 2])
-        self.speed_y = choice([1, 2, 3])
+        self.set_random_speed()
         self.reset()
         self.setup()
 
     def set_random_speed(self):
-        self.speed_x = choice([1, 2])
-        self.speed_y = choice([1, 2, 3])
+        self.speed_x = random.uniform(1,3)
+        self.speed_y = random.uniform(1,3)
